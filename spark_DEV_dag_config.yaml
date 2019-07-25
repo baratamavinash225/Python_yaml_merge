@@ -1,0 +1,33 @@
+airflow_dag_details:
+- dag_name: SPARK_SUBMIT_JOB
+  description: sample spark job run
+  schedule_interval: '@daily'
+  start_day: '15'
+  start_month: '04'
+  start_year: '2018'
+  task_id: spark_submit_task
+airflow_run_config:
+- owner: airflow2
+  retries: '1'
+  retry_delay: minutes=1
+spark_configs:
+- application: /opt/spark/examples/jars/spark-examples_2.11-2.3.2.jar
+  application_args: '["10","--with-spaces", "args should not embedded spaces"]'
+  driver_class_path: ''
+  driver_memory: 2g
+  exclude_packages: ''
+  executor_cores: '2'
+  executor_memory: 2g
+  files: ''
+  jars: hello
+  java_class: org.apache.spark.examples.SparkPi
+  master: local
+  name: Spark test job
+  other_args: default
+  packages: hello
+  repositories: ''
+  spark.speculation: default
+  spark.speculation.interval: default
+  spark.speculation.multiplier: default
+  spark.speculation.quantile: default
+  total_executor_cores: '2'

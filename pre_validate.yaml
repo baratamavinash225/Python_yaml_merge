@@ -1,0 +1,2 @@
+spark_pre_validate: ["java_class", "name", "jars"]
+hive_pre_validate: '[]'

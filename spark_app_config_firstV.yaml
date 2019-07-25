@@ -1,0 +1,62 @@
+job_type: 'spark'
+Configurations:
+  - config: 
+    -   Environment: 'DEV'
+        airflow_run_config:
+        - owner: 'airflow2'
+          retries: '1'
+          retry_delay: minutes=1
+        airflow_dag_details:
+        - dag_name: 'SPARK_SUBMIT_JOB'
+          description: 'sample spark job run'
+          task_id: 'spark_submit_task'
+          schedule_interval: '@daily'
+          start_year: '2018'
+          start_month: '04'
+          start_day: '15'
+        spark_configs:
+        - master: 'local'
+          java_class: 'org.apache.spark.examples.SparkPi'
+          application: '/opt/spark/examples/jars/spark-examples_2.11-2.3.2.jar'
+          total_executor_cores: '2' 
+          executor_cores: '2'
+          executor_memory: '2g'
+          driver_memory: '2g'
+          name: 'Spark test job'
+          files: ''
+          driver_class_path: ''
+          jars: 'hello'
+          packages: 'hello'
+          repositories: ''
+          exclude_packages: ''
+          application_args: '["10","--with-spaces", "args should not embedded spaces"]'
+  - config: 
+    -   Environment: 'QA'
+        airflow_run_config:
+        - owner: 'airflow'
+          retries: '1'
+          retry_delay: minutes=1
+        airflow_dag_details:
+        - dag_name: 'SPARK_SUBMIT_JOB'
+          description: 'sample spark job run'
+          task_id: 'spark_submit_task'
+          schedule_interval: '@daily'
+          start_year: '2018'
+          start_month: '04'
+          start_day: '15'
+        spark_configs:
+        - master: 'local'
+          java_class: 'org.apache.spark.examples.SparkPi'
+          application: '/opt/spark/examples/jars/spark-examples_2.11-2.3.2.jar'
+          total_executor_cores: '1' 
+          executor_cores: '1'
+          executor_memory: '1g'
+          driver_memory: '1g'
+          name: 'Spark test job'
+          files: ''
+          driver_class_path: ''
+          jars: ''
+          packages: ''
+          repositories: ''
+          exclude_packages: ''
+          application_args: '["10","--with-spaces", "args should keep embedded spaces"]'
